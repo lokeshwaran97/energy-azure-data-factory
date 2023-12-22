@@ -1,0 +1,9 @@
+{
+	"name": "energyDataFactorys",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "eec0505e-f450-4a40-bda3-e6385c519e03",
+		"tenantId": "84daf99a-e460-4e17-a8f0-c41d756011a9"
+	}
+}
