@@ -5,7 +5,6 @@ https://medium.com/@waranlokesh84/energy-prediction-using-azure-data-factory-and
 
 The problem is to create a energy prediction model of prosumers to reduce energy imbalance costs. check the below kaggle link for more description about the data and problem statement.
 
-Data engineering and ML flowchart
 
 Step 1 : Upload the dataset to google drive
 
