@@ -1,5 +1,5 @@
 # energy-azure-data-factory
-check this blog for more description
+check this blog for more information
 
 https://medium.com/@waranlokesh84/energy-prediction-using-azure-data-factory-and-azure-ml-49749f90c1d5
 
