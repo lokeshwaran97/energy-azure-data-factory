@@ -3,53 +3,61 @@ check this blog for more information
 
 https://medium.com/@waranlokesh84/energy-prediction-using-azure-data-factory-and-azure-ml-49749f90c1d5
 
-The problem is to create a energy prediction model of prosumers to reduce energy imbalance costs. check the below kaggle link for more description about the data and problem statement.
+## Project Overview
+
+This project aims to develop an energy prediction model for prosumers, focusing on minimizing energy imbalance costs. The complete workflow involves data engineering, machine learning, and model deployment. Below is a detailed guide on the project structure, data flow, and steps to reproduce the results.
+
+### Kaggle Competition Details
+
+The problem statement and dataset for this project are outlined in the Kaggle competition named "Enefit - Predict Energy Behavior of Prosumers." For more details, please refer to [Kaggle - Predict Prosumer Energy Patterns](www.kaggle.com).
 
 
-Step 1 : Upload the dataset to google drive
+## Data Engineering and ML Workflow
 
-       The data from the kaggle competiton is uploaded to my google drive and changed the file access to public
+### Step 1: Upload Dataset to Google Drive
 
-Step 2 : Ingest data from google drive to azure data lake using Azure Data Factory
+- Upload the Kaggle competition dataset to Google Drive.
+- Ensure file access is set to public.
 
-       i) create a blob storage account with hierarchical namespace option
+### Step 2: Ingest Data to Azure Data Lake using Azure Data Factory
 
-       ii) create a container called “energydata” in the storage account
+1. Create a Blob Storage account with hierarchical namespace option.
+2. Create a container named "energydata" with two folders: "rawdata" and "transformeddata."
+3. Set up an Azure Data Factory workspace.
+4. Create HTTP and Data Lake linked services.
+5. Develop a pipeline to ingest and copy data from Google Drive to Azure Data Lake.
+6. Configuration details are available in the [Azure Data Factory folder](https://github.com/lokeshwaran97/energy-azure-data-factory/tree/main/azure_data_factory).
 
-       iii) create two folders “rawdata” and “transformeddata”. The “rawdata” folder is used to store the ingested data and the “transformeddata” is used to stored the processed data using rawdata.
+### Step 3: Preprocess Data using Azure Databricks
 
-       iv) create a Azure Data Factory workspace.
+1. Set up an Azure Databricks workspace and create a compute.
+2. Mount data from Azure Data Lake to Azure Databricks.
+3. Create an app registration and obtain client & secret ID.
+4. Provide API permissions for the app to access Azure Storage and Azure Data Lake.
+5. Utilize PySpark for data preprocessing.
+6. Code for mounting and preprocessing data can be found in the [Azure Databricks folder](https://github.com/lokeshwaran97/energy-azure-data-factory/tree/main/azure_data_bricks).
 
-       create a HTTP linked service to ingest data from google drive
+### Step 4: Create Azure Machine Learning Workspace
 
-       create Data Lake linked service to store the ingested data in data lake
+1. Establish an Azure Machine Learning workspace.
+2. Connect Azure ML to Azure Data Storage.
+3. Grant Azure ML data scientist role permission for the app to access Azure ML workspace.
+4. Use Python SDK to create a connection to Azure Data Store.
+5. Python code for creating the connection is available in the [Azure ML Data Connection folder](https://github.com/lokeshwaran97/energy-azure-data-factory/blob/main/azure_ml_data_connection/energy_ml_datastore_connection.ipynb).
 
-       create a pipeline to ingest and copy data using created linked service as source and sink
+### Step 5: Train ElasticNet Regression Model using Azure ML
 
-Step 3 : create a azure databricks workspace and create a compute
+1. Create a compute in the Azure Machine Learning workspace.
+2. Develop a notebook in Azure ML workspace for processing and training the ElasticNet regression model.
+3. Create a pipeline to automate the process and log model parameters using MLflow.
+4. Python notebook code for model training is available in the [Azure ML Training folder](https://github.com/lokeshwaran97/energy-azure-data-factory/blob/main/azure_ml_training/energy_prediction_ml.ipynb).
 
-       The data from the datalake were mounted to azure databricks and the data were preprocessed using pyspark. The preprocessed data is stored in “transformeddata” Azure data lake folder
+### Post-Processing and Hyperparameter Tuning
 
-       create an app registration and create client & secret id. we have to use this app to connect data lake to data bricks.
+- Evaluate model performance in the job overview tab after pipeline execution.
+- Adjust hyperparameters in the train-model.yml file for further model training.
+- Note: The process_data pipeline is not recomputed if hyperparameters are changed, as processed data is stored in the ML workspace.
 
-       Give api permission for “energyapplication” app to access azure storage and azure data lake
 
-       Use the appid , clientsecret, tenant id of app and azure data lake container name and storage account name to mount azure data lake to azure data bricks
-
-       Go to the storage container and give “energyapplication” app Storage Blob Data Contributor permission. This permission gives “energyapplication” to access energydata Data lake container.
-
-Step 4: create azure machine learning workspace.
-
-       In order to access data for azure ML workspace we have to connect azure ml to azure data storage.
-
-       Before that we have to give Azure ML data scientist role permission for “energyapplication” to access azure ml workspace. with the help of “energyapplication” app we can use python sdk to create connection to azure ml workspace
-
-       I have used phython SDK to create datastore which copies the data from data lake. below is the python code to create connection to azure data store using azure ml client
-
-       create a compute in azure machine learning workspace with below configuration
-
-       create notebook in azure ml workspace. create a pipeline to process and train ElasticNet regression model and log the model and parameters using ML flow. Below is the python notebook code.
-
-       After the pipeline job we can check the evaluation metrics in job overview tab. we can again train the model with different hyper parameters by changing the train-model.yml files. The process_data pipeline will not run if we change hyperparameter because the processed data is stored in ml workspace. Hence process_data pipeline is not computed again.
 
 
