@@ -52,7 +52,7 @@ The problem statement and dataset for this project are outlined in the Kaggle co
 3. Create a pipeline to automate the process and log model parameters using MLflow.
 4. Python notebook code for model training is available in the [Azure ML Training folder](https://github.com/lokeshwaran97/energy-azure-data-factory/blob/main/azure_ml_training/energy_prediction_ml.ipynb).
 
-### Post-Processing and Hyperparameter Tuning
+### Step 6: Post-Processing and Hyperparameter Tuning
 
 - Evaluate model performance in the job overview tab after pipeline execution.
 - Adjust hyperparameters in the train-model.yml file for further model training.
