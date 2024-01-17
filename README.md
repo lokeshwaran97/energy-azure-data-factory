@@ -11,6 +11,8 @@ This project aims to develop an energy prediction model for prosumers, focusing 
 
 The problem statement and dataset for this project are outlined in the Kaggle competition named "Enefit - Predict Energy Behavior of Prosumers." For more details, please refer to [Kaggle - Predict Prosumer Energy Patterns](www.kaggle.com).
 
+![flowchart](https://miro.medium.com/v2/resize:fit:1192/format:webp/1*ukQjPYyO-ItWZnXQ4LG0aQ.png)
+
 
 ## Data Engineering and ML Workflow
 
